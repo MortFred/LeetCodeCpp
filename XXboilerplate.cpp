@@ -19,6 +19,7 @@ int main()
     std::vector<int> candies = {2, 3, 5, 1, 3};
     int extraCandies = 3;
     std::vector<bool> res = s.kidsWithCandies(candies, extraCandies);
+    // std::cout << res << std::endl;
     copy(res.begin(), res.end(), std::ostream_iterator<int>(std::cout, "\n"));
     return 0;
 }
