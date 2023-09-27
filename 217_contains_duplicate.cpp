@@ -9,7 +9,7 @@
 class Solution
 {
 public:
-    std::vector<bool> kidsWithCandies(std::vector<int> &candies, int extraCandies)
+    bool containsDuplicate(std::vector<int> &nums)
     {
         return {};
     }
@@ -20,13 +20,10 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
 
     Solution s;
-    std::vector<int> candies = {2, 3, 5, 1, 3};
-    int extraCandies = 3;
-    std::vector<bool> res = s.kidsWithCandies(candies, extraCandies);
-    // std::cout << res << std::endl;
-    copy(res.begin(), res.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    std::vector<int> nums = {2, 3, 5, 1, 3};
+    bool res = s.containsDuplicate(nums);
+    std::cout << res << std::endl;
 
-    // Timer
     auto end = std::chrono::high_resolution_clock::now();
     double time_taken =
         std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
