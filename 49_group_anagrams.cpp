@@ -11,56 +11,19 @@ class Solution
 public:
     std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string> &strs)
     {
-        std::unordered_map<int, std::unordered_map<std::string, std::vector<std::string>>> anagrams{};
+        std::unordered_map<std::string, std::vector<std::string>> anagrams{};
         for (auto str : strs)
         {
-            bool found = false;
-            for (auto it = anagrams[str.size()].begin(); it != anagrams[str.size()].end(); ++it)
-            {
-                if (isAnagram(it->first, str))
-                {
-                    it->second.push_back(str);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                anagrams[str.size()][str] = {str};
-            }
+            std::string x = str;
+            std::sort(x.begin(), x.end());
+            anagrams[x].push_back(str);
         }
         std::vector<std::vector<std::string>> res;
-        for (auto anagramList : anagrams)
+        for (auto anagram : anagrams)
         {
-            for (auto a : anagramList.second)
-            {
-                res.push_back(a.second);
-            }
+            res.push_back(anagram.second);
         }
         return res;
-    }
-
-private:
-    bool isAnagram(std::string s, std::string t)
-    {
-        if (s.size() != t.size())
-            return false;
-
-        std::unordered_map<char, int> count;
-        for (auto c : t)
-        {
-            ++count[c];
-        }
-        for (auto c : s)
-        {
-            --count[c];
-        }
-        for (auto x : count)
-        {
-            if (x.second != 0)
-                return false;
-        }
-        return true;
     }
 };
 
