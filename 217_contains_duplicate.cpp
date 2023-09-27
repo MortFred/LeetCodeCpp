@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iterator>
 #include <unordered_map>
+#include <unordered_set>
 #include <iomanip>
 #include <chrono>
 
@@ -11,7 +12,20 @@ class Solution
 public:
     bool containsDuplicate(std::vector<int> &nums)
     {
-        return {};
+
+        std::unordered_set<int> numberSet{};
+        for (auto num : nums)
+        {
+            if (numberSet.contains(num))
+                return true;
+            numberSet.insert(num);
+        }
+        return false;
+    }
+    bool containsDuplicateOld(std::vector<int> &nums)
+    {
+        std::unordered_set<int> numberSet(nums.begin(), nums.end());
+        return {nums.size() != numberSet.size()};
     }
 };
 
@@ -20,7 +34,7 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
 
     Solution s;
-    std::vector<int> nums = {2, 3, 5, 1, 3};
+    std::vector<int> nums = {1, 2, 3, 4};
     bool res = s.containsDuplicate(nums);
     std::cout << res << std::endl;
 
