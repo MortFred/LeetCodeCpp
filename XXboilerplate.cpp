@@ -7,6 +7,8 @@
 #include <chrono>
 #include <unordered_set>
 
+using namespace std;
+
 class Solution
 {
 public:
@@ -21,7 +23,7 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
 
     Solution s;
-    std::vector<int> candies = {2, 3, 5, 1, 3};
+    std::vector<int> candies{2, 3, 5, 1, 3};
     int extraCandies = 3;
     std::vector<bool> res = s.kidsWithCandies(candies, extraCandies);
     // std::cout << res << std::endl;
